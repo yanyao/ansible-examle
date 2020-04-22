@@ -1,0 +1,9 @@
+---
+- name: Example
+  hosts: "all"
+  become: true
+  vars:
+    docker__version: "18.06"
+  roles:
+    - role: "nickjj.docker"
+      tags: ["docker"]
