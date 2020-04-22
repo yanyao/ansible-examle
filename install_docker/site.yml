@@ -2,8 +2,10 @@
 - name: Example
   hosts: "all"
   become: true
+  gather_facts: true
   vars:
     docker__version: "18.06"
   roles:
     - role: "nickjj.docker"
       tags: ["docker"]
+      when: ansible_facts['os_family'] == 'Debian' && ansible_architecture == 'X86_64'
