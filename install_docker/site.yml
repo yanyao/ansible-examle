@@ -8,4 +8,4 @@
   roles:
     - role: "nickjj.docker"
       tags: ["docker"]
-      when: ansible_facts['os_family'] and 'Debian' && ansible_architecture == 'X86_64'
+      when: ansible_facts['os_family'] == 'Debian' and ansible_architecture == 'X86_64'
