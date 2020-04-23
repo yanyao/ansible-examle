@@ -6,7 +6,7 @@
   vars:
     docker__version: "18.06"
   pre_tasks:
-    - setup
+    - setup:
   roles:
     - role: "nickjj.docker"
       tags: ["docker"]
