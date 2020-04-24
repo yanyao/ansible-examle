@@ -49,6 +49,6 @@
     mkdir -p /opt/ibm/lsfsuite
     ln -s /lsf-share/lsf /opt/ibm/lsfsuite/lsf
     . /opt/ibm/lsfsuite/lsf/conf/profile.lsf
-    echo lsf_daemons start > /root/lsf
+    lsf_daemons start 
   args:
     executable: /bin/bash
