@@ -9,6 +9,13 @@
 - debug:
     var: lsf_nfs_mount # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.
 
+- name: Add Master IP address to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*rhvfa6a$'
+    line: "192.167.138.52 rhvfa6a"
+    state: present
+
 - name: install nfs client
   apt:
     update_cache: yes # not required. Run the equivalent of C(apt-get update) before the operation. Can be run as part of the package installation or as a separate step.
