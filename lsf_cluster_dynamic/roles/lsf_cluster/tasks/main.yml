@@ -34,7 +34,7 @@
   mount:
     state: mounted # required. choices: absent;mounted;present;unmounted. If C(mounted), the device will be actively mounted and appropriately configured in I(fstab). If the mount point is not present, the mount point will be created.,If C(unmounted), the device will be unmounted without changing I(fstab).,C(present) only specifies that the device is to be configured in I(fstab) and does not trigger or require a mount.,C(absent) specifies that the device mount's entry will be removed from I(fstab) and will also unmount the device and remove the mount point.
     path: /lsf-share # required. Path to the mount point (e.g. C(/mnt/files)).,Before 2.3 this option was only usable as I(dest), I(destfile) and I(name).
-    src: ${lsf_nfs_mount} # not required. Device to be mounted on I(path). Required when I(state) set to C(present) or C(mounted).
+    src: "{{ lsf_nfs_mount }}" # not required. Device to be mounted on I(path). Required when I(state) set to C(present) or C(mounted).
     fstype: nfs # not required. Filesystem type. Required when I(state) is C(present) or C(mounted).
 
 - name: start lsf daemon
