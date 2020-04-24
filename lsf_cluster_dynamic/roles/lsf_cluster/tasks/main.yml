@@ -1,0 +1,37 @@
+---
+# tasks file for lsf_cluster
+
+
+- fail:
+    msg: 'lsf nfs mount is not defined or is empty' # not required. The customized message used for failing execution. If omitted, fail will simply bail out with a generic message.
+  when: (lsf_nfs_mount is undefined) or (lsf_nfs_mount is none)
+
+- name: add lsf user
+  user:
+    name: lsfadmin # required. Name of the user to create, remove or modify.
+    comment: lsf user # not required. Optionally sets the description (aka I(GECOS)) of user account.
+    uid: 495 # not required. Optionally sets the I(UID) of the user.
+      
+- name: create lsf-share mount point
+  file:
+    path: /lsf-share # required. Path to the file being managed.
+    state: directory # not required. choices: absent;directory;file;hard;link;touch. If C(directory), all intermediate subdirectories will be created if they do not exist. Since Ansible 1.7 they will be created with the supplied permissions. If C(file), the file will NOT be created if it does not exist; see the C(touch) value or the M(copy) or M(template) module if you want that behavior.  If C(link), the symbolic link will be created or changed. Use C(hard) for hardlinks. If C(absent), directories will be recursively deleted, and files or symlinks will be unlinked. Note that C(absent) will not cause C(file) to fail if the C(path) does not exist as the state did not change. If C(touch) (new in 1.4), an empty file will be created if the C(path) does not exist, while an existing file or directory will receive updated file access and modification times (similar to the way `touch` works from the command line).
+    owner: lsfadmin # not required. Name of the user that should own the file/directory, as would be fed to I(chown).
+
+
+
+- name: mount lsf-share to mountpoint
+  mount:
+    state: mounted # required. choices: absent;mounted;present;unmounted. If C(mounted), the device will be actively mounted and appropriately configured in I(fstab). If the mount point is not present, the mount point will be created.,If C(unmounted), the device will be unmounted without changing I(fstab).,C(present) only specifies that the device is to be configured in I(fstab) and does not trigger or require a mount.,C(absent) specifies that the device mount's entry will be removed from I(fstab) and will also unmount the device and remove the mount point.
+    path: /lsf-share # required. Path to the mount point (e.g. C(/mnt/files)).,Before 2.3 this option was only usable as I(dest), I(destfile) and I(name).
+    src: ${lsf_nfs_mount} # not required. Device to be mounted on I(path). Required when I(state) set to C(present) or C(mounted).
+    fstype: nfs # not required. Filesystem type. Required when I(state) is C(present) or C(mounted).
+
+- name: start lsf daemon
+  shell: |
+    mkdir -p /opt/ibm/lsfsuite
+    ln -s /lsf-share/lsf /opt/ibm/lsfsuite/lsf
+    . /opt/ibm/lsfsuite/lsf/conf/profile.lsf
+    echo lsf_daemons start > /root/lsf
+  args:
+    executable: /bin/bash

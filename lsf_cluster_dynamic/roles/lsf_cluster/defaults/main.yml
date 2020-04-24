@@ -1,0 +1,4 @@
+---
+# defaults file for lsf_cluster
+
+lsf_nfs_mount: 
