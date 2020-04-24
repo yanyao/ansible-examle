@@ -6,6 +6,9 @@
     msg: 'lsf nfs mount is not defined or is empty' # not required. The customized message used for failing execution. If omitted, fail will simply bail out with a generic message.
   when: (lsf_nfs_mount is undefined) or (lsf_nfs_mount is none)
 
+- debug:
+    var: lsf_nfs_mount # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.
+
 - name: install nfs client
   apt:
     update_cache: yes # not required. Run the equivalent of C(apt-get update) before the operation. Can be run as part of the package installation or as a separate step.
