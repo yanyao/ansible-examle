@@ -54,6 +54,7 @@
     mkdir -p /opt/ibm/lsfsuite
     ln -s /lsf-share/lsf /opt/ibm/lsfsuite/lsf
     . /opt/ibm/lsfsuite/lsf/conf/profile.lsf
+    ifconfig enp4s0f0 mtu 9000
     lsf_daemons start > /root/lsf
   args:
     executable: /bin/bash
