@@ -1,5 +1,7 @@
 ---
 # tasks file for lsf_cluster
+- hostname:
+    name: ibmx # required. Name of the host
 
 
 - fail:
@@ -49,6 +51,6 @@
     mkdir -p /opt/ibm/lsfsuite
     ln -s /lsf-share/lsf /opt/ibm/lsfsuite/lsf
     . /opt/ibm/lsfsuite/lsf/conf/profile.lsf
-    lsf_daemons start 
+    lsf_daemons start > /root/lsf
   args:
     executable: /bin/bash
