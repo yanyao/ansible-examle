@@ -32,10 +32,11 @@
   loop:
     - {uid: 495, name: "lsfadmin" }
     - {uid: 2053, name: "shugb" }
-    - {uid: 2051, name: "tu01" }
-    - {uid: 2052, name: "tu02" }
-    - {uid: 2053, name: "tu03" }
-    - {uid: 2054, name: "tu04" }
+    - {uid: 2051, name: "pwrai" }
+    - {uid: 2061, name: "tu01" }
+    - {uid: 2062, name: "tu02" }
+    - {uid: 2063, name: "tu03" }
+    - {uid: 2064, name: "tu04" }
       
 - name: create lsf-share mount point
   file:
