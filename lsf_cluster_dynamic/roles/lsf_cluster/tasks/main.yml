@@ -27,9 +27,15 @@
 
 - name: add lsf user
   user:
-    name: lsfadmin # required. Name of the user to create, remove or modify.
-    comment: lsf user # not required. Optionally sets the description (aka I(GECOS)) of user account.
-    uid: 495 # not required. Optionally sets the I(UID) of the user.
+    name: "{{ item.name }}" # required. Name of the user to create, remove or modify.
+    uid: "{{ item.uid }}" # not required. Optionally sets the I(UID) of the user.
+  loop:
+    - {uid: 495, name: "lsfadmin" }
+    - {uid: 2053, name: "shugb" }
+    - {uid: 2051, name: "tu01" }
+    - {uid: 2052, name: "tu02" }
+    - {uid: 2053, name: "tu03" }
+    - {uid: 2054, name: "tu04" }
       
 - name: create lsf-share mount point
   file:
