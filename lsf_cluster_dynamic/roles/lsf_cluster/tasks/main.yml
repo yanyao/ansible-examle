@@ -25,7 +25,13 @@
     state: latest # not required. choices: absent;build-dep;latest;present. Indicates the desired package state. C(latest) ensures that the latest version is installed. C(build-dep) ensures the package build dependencies are installed.
   when: ansible_os_family == "Debian"
 
-      
+- name: add lsf user
+  user:
+    name: "{{ item.name }}" # required. Name of the user to create, remove or modify.
+    uid: "{{ item.uid }}" # not required. Optionally sets the I(UID) of the user.
+  loop:
+    - {uid: 495, name: "lsfadmin" }      
+
 - name: create lsf-share mount point
   file:
     path: "{{item}}" # required. Path to the file being managed.
@@ -50,14 +56,13 @@
     uid: "{{ item.uid }}" # not required. Optionally sets the I(UID) of the user.
     home: "{{ lsf_nfs_mount }}/home/{{ item.name }}"
   loop:
-    - {uid: 495, name: "lsfadmin" }
     - {uid: 2053, name: "shugb" }
     - {uid: 2051, name: "pwrai" }
     - {uid: 2061, name: "tu01" }
     - {uid: 2062, name: "tu02" }
     - {uid: 2063, name: "tu03" }
     - {uid: 2064, name: "tu04" }
-    
+
 - name: start lsf daemon
   shell: |
     mkdir -p /opt/ibm/lsfsuite
