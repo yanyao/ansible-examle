@@ -54,7 +54,7 @@
   user:
     name: "{{ item.name }}" # required. Name of the user to create, remove or modify.
     uid: "{{ item.uid }}" # not required. Optionally sets the I(UID) of the user.
-    home: "{{ lsf_nfs_mount }}/home/{{ item.name }}"
+    home: "/lsf-share/home/{{ item.name }}"
   loop:
     - {uid: 2053, name: "shugb" }
     - {uid: 2051, name: "pwrai" }
