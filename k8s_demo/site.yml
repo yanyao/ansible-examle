@@ -3,7 +3,7 @@
   tasks:
     - name: Create a new K8s namespace
       k8s:
-        namespace: "{{ tenant }}"
+        name: "{{ tenant }}"
         api_version: v1
         kind: Namespace
         state: present
