@@ -8,3 +8,16 @@
         kind: Namespace
         state: present
         kubeconfig: /home/awx/.kube/config.json
+    - name: Deploy an application
+      k8s:
+        name: demo
+        state: present
+        src: files/nginx.yaml
+        kubeconfig: /home/awx/.kube/config.json
+
+    - name: Deploy an application svc
+      k8s:
+        name: demo
+        state: present
+        src: files/nginx-svc.yaml
+        kubeconfig: /home/awx/.kube/config.json
