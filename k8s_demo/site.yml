@@ -21,3 +21,15 @@
         state: present
         src: files/nginx-svc.yaml
         kubeconfig: /home/awx/.kube/config.json
+    
+    - name: Get an existing Service object
+      k8s_info:
+        api_version: v1
+        kind: Service
+        name: my-nginx
+        namespace: demo
+      register: web_service
+
+    - name: output service info
+      debug:
+        var: web_service
