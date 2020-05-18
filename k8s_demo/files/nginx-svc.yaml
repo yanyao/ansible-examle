@@ -4,11 +4,11 @@ metadata:
   name: my-nginx
   namespace: demo
   labels:
-    app: my-nginx
+    app: nginx
 spec:
   type: NodePort
   ports:
   - port: 80
     protocol: TCP
   selector:
-    app: my-nginx
+    app: nginx
