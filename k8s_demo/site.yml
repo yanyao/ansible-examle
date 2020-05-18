@@ -3,21 +3,21 @@
   tasks:
     - name: Create a new K8s namespace
       k8s:
-        namespace: {{ tenant }}
+        namespace: "{{ tenant }}"
         api_version: v1
         kind: Namespace
         state: present
         kubeconfig: /home/awx/.kube/config.json
     - name: Deploy an application
       k8s:
-        namespace: {{ tenant }}
+        namespace: "{{ tenant }}"
         state: present
         src: files/nginx.yaml
         kubeconfig: /home/awx/.kube/config.json
 
     - name: Deploy an application svc
       k8s:
-        namespace: {{ tenant }}
+        namespace: "{{ tenant }}"
         state: present
         src: files/nginx-svc.yaml
         kubeconfig: /home/awx/.kube/config.json
@@ -27,7 +27,7 @@
         api_version: v1
         kind: Service
         name: my-nginx
-        namespace: {{ tenant }}
+        namespace: "{{ tenant }}"
         kubeconfig: /home/awx/.kube/config.json
       register: web_service
 
