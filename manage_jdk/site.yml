@@ -2,7 +2,7 @@
 hosts: all
 tasks:
   - include_vars: vars.yaml
-  - name: "{{ state }}" OpenJDK with Version "{{ jdk_version }}"
+  - name: "{{ state }} OpenJDK with Version {{ jdk_version }}"
     apt:
       name: "openjdk-{{ jdk_version }}-jdk"
       state: "{{ state }}"
