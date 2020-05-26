@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  become: yes
   tasks:
     - include_vars: vars.yaml
     - name: "{{ state }} OpenJDK with Version {{ jdk_version }}"
