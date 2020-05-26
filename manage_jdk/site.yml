@@ -6,4 +6,5 @@
       apt:
         name: "openjdk-{{ jdk_version }}-jdk"
         state: "{{ state }}"
+        update_cache: true
 
