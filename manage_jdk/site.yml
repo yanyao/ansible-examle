@@ -5,7 +5,7 @@
     - include_vars: vars.yaml
     - name: "{{ state }} OpenJDK with Version {{ jdk_version }}"
       apt:
-        name: "openjdk-{{ jdk_version }}-jdk"
+        name: "openjdk-{{ jdk_version }}-jre-headless"
         state: "{{ state }}"
         update_cache: true
 
