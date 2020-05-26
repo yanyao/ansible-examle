@@ -7,5 +7,6 @@
       apt:
         name: "openjdk-{{ jdk_version }}-jre-headless"
         state: "{{ state }}"
+        autoremove: yes
         update_cache: true
 
